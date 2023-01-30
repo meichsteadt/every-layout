@@ -1,24 +1,24 @@
-import React, { ReactElement, ReactNode } from 'react';
-import styles from './Stack.module.css';
+import React, { ReactNode, CSSProperties, ReactElement } from 'react';
+import styles from "./Switcher.module.css";
 
 interface Props {
   children: ReactNode;
-  recursive: boolean;
+  limit: number;
   space: string;
-  splitAfter: number;
-  style: React.CSSProperties;
+  style: CSSProperties,
+  threshold: string;
 }
 
-const Stack = (props: Props) => {
-  const classNames = `
-    ${styles.stack}
-    ${props.recursive? styles.recursive : null}
-  `
-
+const Switcher = (props: Props) => {
   const style = {
-    marginBlockStart: props.space,
+    "--threshold": props.threshold,
+    gap: props.space,
     ...props.style
   };
+
+  const classNames = `
+    ${styles.switcher}
+  `;
 
   const childElements = (): ReactNode => {
     return React.Children.map(props.children, (child: ReactNode, index: number) => {
@@ -27,8 +27,8 @@ const Stack = (props: Props) => {
           ...childElement.props.style,
       }
 
-      if(index + 1 === props.splitAfter) {
-        childElementStyles["marginBlockEnd"] = "auto";
+      if((index) >= props.limit) {
+        childElementStyles["flexBasis"] = "100%";
       }
 
       return React.cloneElement(childElement, {style: childElementStyles})
@@ -42,11 +42,12 @@ const Stack = (props: Props) => {
   );
 };
 
-Stack.defaultProps = {
-  recursive: false,
+Switcher.defaultProps = {
+  children: null,
+  limit: 2,
   space: "var(--s1)",
-  splitAfter: null,
   style: {},
+  threshold: "30rem",
 }
 
-export default Stack;
+export default Switcher;

@@ -7,6 +7,7 @@ interface Props {
   gutters: string;
   intrinsic: boolean;
   max: string;
+  style: React.CSSProperties;
 }
 
 const Center = (props: Props) => {
@@ -15,6 +16,7 @@ const Center = (props: Props) => {
       paddingInlineStart: props.gutters, 
       paddingInlineEnd: props.gutters,
       textAlign: (props.andText ? "center" : "") as "center",
+      ...props.style
     };
 
   const classNames = `
@@ -31,10 +33,10 @@ const Center = (props: Props) => {
 
 Center.defaultProps = {
   andText: false,
-  children: null,
   gutters: "0",
   intrinsic: false,
   max: "var(--measure)",
+  style: {},
 }
 
 export default Center;

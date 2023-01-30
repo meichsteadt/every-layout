@@ -6,6 +6,7 @@ interface Props {
   padding: string;
   borderWidth: string;
   invert: boolean;
+  style: React.CSSProperties;
 }
 
 const Box = (props: Props) => {
@@ -15,7 +16,8 @@ const Box = (props: Props) => {
   `
   const style = {
     padding: props.padding, 
-    borderWidth: props.borderWidth
+    borderWidth: props.borderWidth,
+    ...props.style
   }
 
   return (
@@ -29,7 +31,8 @@ Box.defaultProps = {
   children: null,
   padding: "var(--s1)",
   borderWidth: "var(--border-thin)",
-  invert: false
+  invert: false,
+  style: {},
 }
 
 export default Box;

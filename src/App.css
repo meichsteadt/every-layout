@@ -11,54 +11,13 @@
   --s3: calc(var(--s2) * var(--ratio));
   --s4: calc(var(--s3) * var(--ratio));
   --s5: calc(var(--s4) * var(--ratio));
-  box-sizing: border-box;
 }
 
 main > * {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 55rem;
+  max-width: 1200px;
   padding: var(--s2);
-}
-
-
-
-
-
-
-.sidebar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s0);
-}
-
-.sidebar > :first-child {
-  flex-grow: 1;
-  flex-basis: 30rem;
-}
-
-.sidebar > :last-child {
-  flex-grow: 1;
-  min-inline-size: 10rem;
-}
-
-.switcher {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s0);
-  --threshold: 50rem;
-}
-
-.switcher > * {
-  flex-grow: 1;
-  flex-basis: calc((var(--threshold) - 100%) * 999);
-}
-
-.stack:first-of-type {
-  min-height: 100vh;
-}
-
-.stack > :nth-child(4) {
-  margin-block-end: auto;
+  box-sizing: border-box;
 }
